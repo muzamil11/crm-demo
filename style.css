@@ -1,0 +1,233 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  font-family: system-ui, sans-serif;
+}
+
+.main {
+  padding: 3rem 2rem;
+}
+
+.cards-grid {
+  display: grid;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Card base */
+.card {
+  background: #fff;
+  border-radius: 1rem;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2);
+}
+
+/* Header bar */
+.card-window-header {
+  height: 2.5rem;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  gap: 0.5rem;
+}
+
+.window-dots {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.dot-red {
+  background: #fca5a5;
+}
+.dot-yellow {
+  background: #facc15;
+}
+.dot-green {
+  background: #4ade80;
+}
+
+.window-title {
+  margin-left: 1rem;
+  font-size: 0.75rem;
+  font-family: monospace;
+  color: #9ca3af;
+}
+
+/* Video wrapper */
+.card-video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+/* Base video style */
+/* BASE VIDEO STYLE */
+.card-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/* Salesforce (React exact) */
+.card-video-salesforce {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+  transform: translateY(1rem) scale(1.18);
+  transform-origin: center;
+}
+
+/* HubSpot (React EXACT mirror — FINAL) */
+.card-video-hubspot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+  transform: translateY(2.5rem) translateX(5rem) scale(1.44);
+  transform-origin: center;
+}
+
+/* Footer */
+.card-footer {
+  padding: 1rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.card-footer-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon-blue {
+  background: #eff6ff;
+  color: #00a1e0;
+}
+.card-icon-orange {
+  background: #fff7ed;
+  color: #ff7a59;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* -----------------------------------------
+   FIX #1 — 1200px to 1024px
+   HubSpot black top border removal
+------------------------------------------*/
+@media (max-width: 1200px) and (min-width: 1025px) {
+  .card-video-hubspot {
+    transform: translateY(1.5rem) translateX(3rem) scale(1.3) !important;
+    object-position: left top;
+  }
+}
+
+/* -----------------------------------------
+   FIX #2 — 1000px to 850px
+   Buttons hidden (both videos)
+------------------------------------------*/
+@media (max-width: 1000px) and (min-width: 850px) {
+  .card-video-salesforce {
+    transform: translateY(0.5rem) scale(1.12) !important;
+    object-position: left top;
+  }
+
+  .card-video-hubspot {
+    transform: translateY(1rem) translateX(2rem) scale(1.2) !important;
+    object-position: left top;
+  }
+}
+
+/* -----------------------------------------
+   FIX #3 — Ultra Wide Screens (2560px+)
+   Buttons not visible
+------------------------------------------*/
+@media (min-width: 2000px) {
+  .card-video-salesforce {
+    transform: translateY(0.5rem) scale(1.1) !important;
+  }
+
+  .card-video-hubspot {
+    transform: translateY(1rem) translateX(3rem) scale(1.25) !important;
+  }
+}
+
+/* -------------------------------------------------------
+   FIX — HubSpot black border between 1250px → 850px
+--------------------------------------------------------*/
+@media (max-width: 1250px) and (min-width: 850px) {
+  .card-video-hubspot {
+    transform: translateY(1.2rem) translateX(4rem) scale(1.32) !important;
+    object-position: left top !important;
+  }
+}
+/* -------------------------------------------------------
+   FIX — HubSpot slight top black bar between 1024px → 1164px
+--------------------------------------------------------*/
+@media (max-width: 1164px) and (min-width: 1024px) {
+  .card-video-hubspot {
+    transform: translateY(1.6rem) translateX(4.2rem) scale(1.36) !important;
+    object-position: left top !important;
+  }
+}
+/* -------------------------------------------------------
+   PERFECT FIX — HubSpot top black bar (1024px → 1164px)
+--------------------------------------------------------*/
+@media (max-width: 1164px) and (min-width: 1024px) {
+  .card-video-hubspot {
+    /* Slightly more zoom & upward shift — removes black bar */
+    transform: translateY(2.2rem) translateX(4.8rem) scale(1.48) !important;
+
+    /* Keep top aligned to avoid showing black */
+    object-position: left top !important;
+  }
+}
